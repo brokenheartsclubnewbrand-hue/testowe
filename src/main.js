@@ -1,5 +1,5 @@
 import './styles.css';
-import { salesConfig, isSalesReady, isHttpsUrl } from './config.js';
+import { salesConfig, isHttpsUrl } from './config.js';
 
 const $ = (selector) => document.querySelector(selector);
 const menu = $('#navigation');
@@ -66,12 +66,11 @@ document.querySelectorAll('dialog').forEach((dialog) => {
     if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
   });
 });
-function showInfo(title, paragraphs, sample = false) {
+function showInfo(title, paragraphs) {
   $('#dialog-title').textContent = title;
   $('#dialog-content').replaceChildren(...paragraphs.map((text) => {
     const p = document.createElement('p'); p.textContent = text; return p;
   }));
-  $('#dialog-sample').hidden = !sample;
   openDialog(infoDialog);
 }
 
@@ -111,34 +110,16 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-const ready = isSalesReady();
-if (ready) {
-  $('#price-label').textContent = 'Cena brutto · zakup jednorazowy';
-  $('#price-value').textContent = new Intl.NumberFormat('pl-PL', { style: 'currency', currency: 'PLN' }).format(salesConfig.pricePLN);
-  document.querySelectorAll('[data-buy-link]').forEach((link) => { link.href = salesConfig.checkoutUrl; });
-  $('#sale-status span').textContent = 'Przejdziesz do bezpiecznej płatności na platformie sprzedażowej.';
-  $('#delivery-note').textContent = salesConfig.deliveryDescription;
-  $('#delivery-faq').textContent = salesConfig.deliveryDescription;
-  $('#footer-status').textContent = `Sprzedawca: ${salesConfig.seller.name}`;
-}
-$('#purchase-button').addEventListener('click', () => {
-  if (ready) { window.location.assign(salesConfig.checkoutUrl); return; }
-  showInfo('To jeszcze wersja demonstracyjna.', [
-    'Zakupy i płatności nie są aktywne. Nie pobierzemy pieniędzy ani danych zamówienia.',
-    'Przed uruchomieniem sprzedaży trzeba uzupełnić cenę, dane i dokumenty sprzedawcy oraz podłączyć koszyk z dostawą PDF. Teraz możesz obejrzeć i pobrać bezpłatny, trzystronicowy fragment.',
-  ], true);
-});
-
 const legalMessages = {
   seller: ['Dane sprzedawcy', [
-    `Nazwa sprzedawcy: ${salesConfig.seller.name || '[do uzupełnienia]'}`,
-    `Adres: ${salesConfig.seller.address || '[do uzupełnienia]'}`,
-    `NIP / dane rejestrowe, jeśli dotyczą sprzedawcy: ${salesConfig.seller.taxId || '[do uzupełnienia]'}`,
+    salesConfig.seller.name ? `Nazwa sprzedawcy: ${salesConfig.seller.name}` : 'Dane sprzedawcy sprawdzisz na stronie produktu w Naffy.',
+    ...(salesConfig.seller.address ? [`Adres: ${salesConfig.seller.address}`] : []),
+    ...(salesConfig.seller.taxId ? [`NIP / dane rejestrowe: ${salesConfig.seller.taxId}`] : []),
   ]],
-  contact: ['Kontakt', [salesConfig.seller.email ? `Adres e-mail sprzedawcy: ${salesConfig.seller.email}` : 'Adres e-mail do kontaktu i obsługi zamówień: [do uzupełnienia przez sprzedawcę].']],
-  terms: ['Regulamin — do uzupełnienia', ['Sprzedawca nie dostarczył jeszcze regulaminu sprzedaży. Dokument musi opisywać rzeczywiste zasady zamawiania, płatności, dostarczania treści cyfrowych i reklamacji. Sprzedaż w tej wersji nie jest aktywna.']],
-  privacy: ['Prywatność — do uzupełnienia', ['Sprzedawca nie dostarczył jeszcze polityki prywatności. Przed uruchomieniem sprzedaży trzeba wskazać administratora danych i rzeczywiste zasady ich przetwarzania, w tym przez wybraną platformę płatności i hosting. Ta demonstracja nie zawiera formularzy, analityki ani marketingowych plików cookie.']],
-  consumer: ['Prawa konsumenta — do uzupełnienia', ['Informacje o prawach konsumenta wymagają przygotowania przez sprzedawcę dla rzeczywistego procesu sprzedaży treści cyfrowych, w tym zasad reklamacji i odstąpienia od umowy. Nie podano jeszcze tych warunków. Nie przyjmujemy obecnie zamówień.']],
+  contact: ['Kontakt', [salesConfig.seller.email ? `Adres e-mail sprzedawcy: ${salesConfig.seller.email}` : 'W sprawach zakupu i dostępu do pliku skorzystaj z danych kontaktowych sprzedawcy podanych w Naffy.']],
+  terms: ['Regulamin zakupu', ['Zakup odbywa się przez Naffy. Przed opłaceniem zamówienia zapoznaj się z regulaminem udostępnionym w procesie zakupu.']],
+  privacy: ['Prywatność', ['Ta strona nie zawiera formularzy, analityki ani marketingowych plików cookie. Płatność i dane zamówienia obsługuje zewnętrzna platforma Naffy. Przed zakupem zapoznaj się z zasadami prywatności udostępnionymi w Naffy.']],
+  consumer: ['Prawa konsumenta', ['Przed zakupem zapoznaj się w Naffy z informacjami o prawach konsumenta, reklamacjach i odstąpieniu od umowy dotyczących tej oferty.']],
 };
 const legalUrlKey = { terms: 'termsUrl', privacy: 'privacyUrl', consumer: 'consumerRightsUrl' };
 document.querySelectorAll('[data-legal]').forEach((element) => {

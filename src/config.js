@@ -5,13 +5,11 @@
  */
 export const salesConfig = {
   // Wklej pełny link HTTPS do produktu/koszyka Naffy lub Easycart.
-  checkoutUrl: '',
+  checkoutUrl: 'https://www.naffy.io/acrossflow/praktyczny-ebook-idu',
   // Końcowa cena brutto w PLN, zgodna z koszykiem; np. liczba, bez cudzysłowów.
-  pricePLN: null,
-  // Uzupełnij zgodnie z rzeczywistą konfiguracją dostawy na platformie.
-  deliveryDescription: '',
-  // Włącz dopiero po uzupełnieniu danych, dokumentów i sprawdzeniu dostawy.
-  salesEnabled: false,
+  pricePLN: 39.99,
+  // Bez deklarowania niepotwierdzonego sposobu ani terminu dostawy.
+  deliveryDescription: 'Zakup obsługuje Naffy. Informacje o dostępie do pliku znajdziesz w ofercie i podczas składania zamówienia na tej platformie.',
   seller: { name: '', address: '', taxId: '', email: '' },
   // Publiczne adresy HTTPS zatwierdzonych dokumentów (mogą być na platformie).
   legal: { termsUrl: '', privacyUrl: '', consumerRightsUrl: '' },
@@ -22,13 +20,4 @@ export function isHttpsUrl(value) {
     const url = new URL(value);
     return url.protocol === 'https:' && !url.username && !url.password;
   } catch { return false; }
-}
-
-export function isSalesReady(config = salesConfig) {
-  return config.salesEnabled === true && isHttpsUrl(config.checkoutUrl)
-    && Number.isFinite(config.pricePLN) && config.pricePLN > 0
-    && Boolean(config.deliveryDescription.trim())
-    && Boolean(config.seller.name.trim()) && Boolean(config.seller.address.trim())
-    && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(config.seller.email)
-    && ['termsUrl', 'privacyUrl', 'consumerRightsUrl'].every((key) => isHttpsUrl(config.legal[key]));
 }

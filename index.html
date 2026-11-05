@@ -39,7 +39,7 @@
         <a href="#dla-kogo">Dla kogo</a>
         <a href="#zawartosc">Co jest w środku</a>
         <a href="#fragment">Zajrzyj do e-booka</a>
-        <a class="button button-small" href="#oferta" data-buy-link>Kup teraz <svg class="icon"><use href="#i-arrow"/></svg></a>
+        <a class="button button-small" href="__CHECKOUT_URL__" target="_self" data-buy-link>Kup teraz <svg class="icon"><use href="#i-arrow"/></svg></a>
       </nav>
     </header>
   </div>
@@ -55,7 +55,7 @@
             <li><svg class="icon"><use href="#i-check"/></svg>Dziennik spacerów i ściąga do telefonu</li>
           </ul>
           <div class="hero-actions">
-            <a class="button" href="#oferta" data-buy-link>Kup teraz <svg class="icon"><use href="#i-arrow"/></svg></a>
+            <a class="button" href="__CHECKOUT_URL__" target="_self" data-buy-link>Kup teraz <svg class="icon"><use href="#i-arrow"/></svg></a>
             <a class="text-link" href="#zawartosc">Zobacz, co jest w środku</a>
           </div>
           <p class="hero-meta">E-book PDF <span>·</span> 17 stron <span>·</span> materiały do druku</p>
@@ -161,10 +161,9 @@
           <figure class="offer-visual reveal"><img src="/images/ebook-mockup-small.webp" alt="Okładka e-booka Na luźnej smyczy, poradnik spacerowy z ćwiczeniami" width="520" height="693" loading="lazy" decoding="async"/><figcaption>Produkt cyfrowy · wizualizacja okładki</figcaption></figure>
           <div class="offer-copy reveal"><h2 id="offer-title">Na luźnej smyczy</h2><p class="offer-description">Ćwiczenia w drodze do parku<br>i dziennik spacerów.</p>
             <ul class="check-list"><li><svg class="icon"><use href="#i-check"/></svg>17 stron w formacie PDF, po polsku</li><li><svg class="icon"><use href="#i-check"/></svg>Ćwiczenia na twojej codziennej trasie</li><li><svg class="icon"><use href="#i-check"/></svg>Dziennik do druku i plan najbliższych wyjść</li><li><svg class="icon"><use href="#i-check"/></svg>Ściąga do zapisania w telefonie</li></ul>
-            <div class="offer-price"><span id="price-label">Cena do uzupełnienia</span><strong id="price-value">— <span>zł</span></strong></div>
-            <button class="button button-cream purchase-trigger" id="purchase-button">Kup teraz <svg class="icon"><use href="#i-arrow"/></svg></button>
-            <p class="demo-notice" id="sale-status"><svg class="icon"><use href="#i-lock"/></svg><span>Wersja demonstracyjna — płatności nie są jeszcze podłączone.</span></p>
-            <p class="delivery-note" id="delivery-note">Sposób otrzymania pliku zostanie podany po skonfigurowaniu sprzedaży. W tej wersji nie złożysz zamówienia.</p>
+            <div class="offer-price"><span id="price-label">Cena brutto · zakup jednorazowy</span><strong id="price-value">__PRICE_PLN__ <span>zł</span></strong></div>
+            <a class="button button-cream purchase-trigger" id="purchase-button" href="__CHECKOUT_URL__" target="_self" data-buy-link>Kup teraz <svg class="icon"><use href="#i-arrow"/></svg></a>
+            <p class="delivery-note" id="delivery-note">Zakup i płatność obsługuje Naffy.</p>
           </div>
         </div>
       </section>
@@ -176,7 +175,7 @@
           <details><summary>Czy mogę czytać go na telefonie?</summary><div class="faq-answer"><p>Tak, jeśli twoje urządzenie otwiera pliki PDF. Strony mają układ A4, więc na mniejszym ekranie możesz potrzebować powiększenia. Ściągę ze strony 16 możesz zachować w telefonie przed spacerem.</p></div></details>
           <details><summary>Czy potrzebuję specjalnego programu?</summary><div class="faq-answer"><p>Wystarczy przeglądarka lub standardowy czytnik plików PDF. Dziennik ze strony 14 możesz wydrukować. Możesz też prowadzić notatki w telefonie, używając tych samych rubryk.</p></div></details>
           <details><summary>Czy poradnik jest dla początkujących?</summary><div class="faq-answer"><p>Tak. Zaczyna od przygotowania szelek, smyczy i nagród oraz wyboru łatwiejszego odcinka. Potem wyjaśnia krok po kroku, jak nagradzać luz, reagować na napięcie i zapisywać obserwacje.</p></div></details>
-          <details><summary>Jak otrzymam plik po zakupie?</summary><div class="faq-answer"><p id="delivery-faq">Strona działa obecnie w trybie demonstracyjnym. Link do koszyka i automatyczne dostarczanie PDF nie zostały jeszcze skonfigurowane. Przed uruchomieniem sprzedaży pojawi się tutaj rzeczywista instrukcja otrzymania pliku.</p></div></details>
+          <details><summary>Jak otrzymam plik po zakupie?</summary><div class="faq-answer"><p id="delivery-faq">__DELIVERY_DESCRIPTION__</p></div></details>
           <details><summary>Czy to zastąpi konsultację z behawiorystą?</summary><div class="faq-answer"><p>Nie. Ćwiczenia dotyczą codziennych spacerów. Przy lęku, gwałtownych reakcjach lub ryzyku pogryzienia potrzebna jest indywidualna pomoc. Nagła zmiana ruchu, kulawizna lub ból wymagają konsultacji weterynaryjnej.</p></div></details>
           <details><summary>Jak szybko zobaczę zmianę?</summary><div class="faq-answer"><p>Poradnik nie obiecuje terminu ani gwarantowanego wyniku. Zachęca do porównywania podobnych przejść na tej samej trasie i notowania liczby napięć oraz swobodnych kroków. Tempo pracy trzeba dopasować do psa i warunków.</p></div></details>
         </div>
@@ -185,10 +184,10 @@
 
     <footer class="site-footer wrap">
       <div class="footer-top"><a class="brand footer-brand" href="#poczatek">na luźnej smyczy</a><nav aria-label="Informacje o sprzedaży"><button class="footer-link" data-legal="seller">Dane sprzedawcy</button><button class="footer-link" data-legal="contact">Kontakt</button><a class="footer-link" href="#informacje" data-legal="terms">Regulamin</a><a class="footer-link" href="#informacje" data-legal="privacy">Prywatność</a><a class="footer-link" href="#informacje" data-legal="consumer">Prawa konsumenta</a></nav></div>
-      <div class="footer-bottom"><p>Małe kroki. Wspólne spacery.</p><p id="footer-status">Dane i dokumenty sprzedaży wymagają uzupełnienia przed uruchomieniem sprzedaży.</p><a href="#poczatek">Wróć na górę <svg class="icon"><use href="#i-arrow"/></svg></a></div>
+      <div class="footer-bottom"><p>Małe kroki. Wspólne spacery.</p><a href="#poczatek">Wróć na górę <svg class="icon"><use href="#i-arrow"/></svg></a></div>
     </footer>
 
-    <dialog id="info-dialog" class="info-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-content"><button class="dialog-close" data-close aria-label="Zamknij okno"><svg class="icon"><use href="#i-close"/></svg></button><span class="dialog-symbol"><svg class="icon"><use href="#i-lock"/></svg></span><h2 id="dialog-title"></h2><div id="dialog-content"></div><div class="dialog-actions"><button class="button" data-close>Rozumiem</button><a class="text-link" id="dialog-sample" href="/na-luznej-smyczy-fragment.pdf" download>Pobierz bezpłatny fragment</a></div></dialog>
+    <dialog id="info-dialog" class="info-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-content"><button class="dialog-close" data-close aria-label="Zamknij okno"><svg class="icon"><use href="#i-close"/></svg></button><span class="dialog-symbol"><svg class="icon"><use href="#i-lock"/></svg></span><h2 id="dialog-title"></h2><div id="dialog-content"></div><div class="dialog-actions"><button class="button" data-close>Rozumiem</button><a class="text-link" id="dialog-checkout" href="__CHECKOUT_URL__" target="_self">Przejdź do Naffy</a></div></dialog>
 
     <dialog id="preview-dialog" class="preview-dialog" aria-labelledby="preview-dialog-title"><div class="preview-toolbar"><h2 id="preview-dialog-title">Podgląd e-booka</h2><button class="dialog-close" data-close aria-label="Zamknij podgląd"><svg class="icon"><use href="#i-close"/></svg></button></div><div class="preview-scroll"><img id="preview-image" src="/images/strona-2.webp" alt="" width="953" height="1348"/></div><div class="preview-controls"><button class="button button-outline preview-prev" aria-label="Poprzednia przykładowa strona"><svg class="icon arrow-back"><use href="#i-arrow"/></svg><span>Poprzednia</span></button><span id="preview-counter" aria-live="polite"></span><button class="button button-outline preview-next" aria-label="Następna przykładowa strona"><span>Następna</span><svg class="icon"><use href="#i-arrow"/></svg></button></div></dialog>
   <script type="module" src="/src/main.js"></script>
